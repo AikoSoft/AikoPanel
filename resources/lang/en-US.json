@@ -149,5 +149,9 @@
     "The email already exists": "The email already exists",
     "Subscription does not exist": "Subscription does not exist",
     "Ban failed": "Ban failed",
-    "Not logged in or login has expired": "Not logged in or login has expired"
+    "Not logged in or login has expired": "Not logged in or login has expired",
+    "Announcement does not exist": "Announcement does not exist",
+    "Close Failed": "Close Failed",
+    "Email address is already in use": "Email address is already in use",
+    "Handling failure": "Handling failure"
 }
