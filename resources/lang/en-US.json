@@ -107,5 +107,17 @@
     "Email does not exist": "Email does not exist",
     "Failed to reset password": "Failed to reset password",
     "User traffic reset failed": "User traffic reset failed",
-    "Theme rendering failed. If the theme is updated, the parameters may change. Please reconfigure the theme and try again.": "Theme rendering failed. If the theme is updated, the parameters may change. Please reconfigure the theme and try again."
+    "Theme rendering failed. If the theme is updated, the parameters may change. Please reconfigure the theme and try again.": "Theme rendering failed. If the theme is updated, the parameters may change. Please reconfigure the theme and try again.",
+    "Group name cannot be empty": "Group name cannot be empty",
+    "Group does not exist": "Group does not exist",
+    "The group is already in use by the node and cannot be deleted": "The group is already in use by the node and cannot be deleted",
+    "The group is already in use by the subscription and cannot be deleted": "The group is already in use by the subscription and cannot be deleted",
+    "The group is already in use by the user and cannot be deleted": "The group is already in use by the user and cannot be deleted",
+    "Server does not exist": "Server does not exist",
+    "Update failed": "Update failed",
+    "Copy failed": "Copy failed",
+    "Sort failed": "Sort failed",
+    "Route does not exist": "Route does not exist",
+    "Delete failed": "Delete failed",
+    "Node ID does not exist": "Node ID does not exist",
 }
