@@ -87,7 +87,7 @@ class UniProxyController extends Controller
         ]);
     }
 
-    // 后端提交在线数据
+
     public function alive(Request $request)
     {
         $data = request()->getContent() ?: json_encode($_POST);
