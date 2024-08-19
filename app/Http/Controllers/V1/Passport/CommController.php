@@ -48,7 +48,7 @@ class CommController extends Controller
         if (isset($isforget)) {
             if ($isforget == 0 && $email_exists) {
                 abort(500, __('This email is registered'));
-            } 
+            }
             if ($isforget == 1 && !$email_exists) {
                 abort(500, __('This email is not registered in the system'));
             }

@@ -133,7 +133,7 @@
     "Only orders that are pending payment can be operated": "Only orders that are pending payment can be operated",
     "User does not exist": "User does not exist",
     "Plan does not exist": "Plan does not exist",
-    "There is an unpaid order" : "There is an unpaid order",
+    "There is an unpaid order": "There is an unpaid order",
     "Order creation failed": "Order creation failed",
     "Payment method does not exist": "Payment method does not exist",
     "Please set the APP_URL in the .env file": "Please set the APP_URL in the .env file",
@@ -141,15 +141,13 @@
     "There is an order under this subscription and it cannot be deleted": "There is an order under this subscription and it cannot be deleted",
     "There are users under this subscription and they cannot be deleted": "There are users under this subscription and they cannot be deleted",
     "The subscription does not exist": "The subscription does not exist",
-    "Total order amount" : "Total order amount",
+    "Total order amount": "Total order amount",
     "Incorrect parameters": "Incorrect parameters",
     "Theme configuration file does not exist": "Theme configuration file does not exist",
-    "Incorrect theme configuration file" : "Incorrect theme configuration file",
+    "Incorrect theme configuration file": "Incorrect theme configuration file",
     "The work order does not exist": "The work order does not exist",
     "The email already exists": "The email already exists",
     "Subscription does not exist": "Subscription does not exist",
     "Ban failed": "Ban failed",
-    
-
-
+    "Not logged in or login has expired": "Not logged in or login has expired"
 }
