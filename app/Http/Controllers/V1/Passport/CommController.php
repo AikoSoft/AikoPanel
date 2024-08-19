@@ -57,14 +57,14 @@ class CommController extends Controller
             abort(500, __('Email verification code has been sent, please request again later'));
         }
         $code = rand(100000, 999999);
-        $subject = config('aikopanel.app_name', 'aikopanel') . __('Email verification code');
+        $subject = config('aikopanel.app_name', 'AikoPanel') . __('Email verification code');
 
         SendEmailJob::dispatch([
             'email' => $email,
             'subject' => $subject,
             'template_name' => 'verify',
             'template_value' => [
-                'name' => config('aikopanel.app_name', 'aikopanel'),
+                'name' => config('aikopanel.app_name', 'AikoPanel'),
                 'code' => $code,
                 'url' => config('aikopanel.app_url')
             ]
