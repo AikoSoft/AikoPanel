@@ -102,5 +102,6 @@
     "Failed to connect to the database": "Kết nối với cơ sở dữ liệu thất bại",
     "Database file does not exist": "Tệp cơ sở dữ liệu không tồn tại",
     "Database file format error": "Lỗi định dạng tệp cơ sở dữ liệu",
-    "Failed to register administrator account, please try again later": "Đăng ký tài khoản quản trị viên thất bại, vui lòng thử lại sau"
+    "Failed to register administrator account, please try again later": "Đăng ký tài khoản quản trị viên thất bại, vui lòng thử lại sau",
+    "Database update file not found": "Không tìm thấy tệp cập nhật cơ sở dữ liệu"
 }
