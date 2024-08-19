@@ -22,7 +22,7 @@ class AikoPanelInstall extends Command
      *
      * @var string
      */
-    protected $description = 'aikopanel 安装';
+    protected $description = 'Aikopanel install';
 
     /**
      * Create a new command instance.
@@ -53,59 +53,59 @@ class AikoPanelInstall extends Command
             $this->info("--------------------------------------------------");
             if (\File::exists(base_path() . '/.env')) {
                 $securePath = config('aikopanel.secure_path', config('aikopanel.frontend_admin_path', hash('crc32b', config('app.key'))));
-                $this->info("访问 http(s)://你的站点/{$securePath} 进入管理面板，你可以在用户中心修改你的密码。");
-                abort(500, '如需重新安装请删除目录下.env文件');
+                $this->info("Visit http(s)://yoursite/{$securePath} to enter the admin panel. You can change your password in the user center.");
+                abort(500, __('If you need to reinstall, please delete the .env file in the directory'));
             }
 
             if (!copy(base_path() . '/.env.example', base_path() . '/.env')) {
-                abort(500, '复制环境文件失败，请检查目录权限');
+                abort(500, __('Failed to copy .env.example file'));
             }
             $this->saveToEnv([
                 'APP_KEY' => 'base64:' . base64_encode(Encrypter::generateKey('AES-256-CBC')),
-                'DB_HOST' => $this->ask('请输入数据库地址（默认:localhost）', 'localhost'),
-                'DB_DATABASE' => $this->ask('请输入数据库名'),
-                'DB_USERNAME' => $this->ask('请输入数据库用户名'),
-                'DB_PASSWORD' => $this->ask('请输入数据库密码')
+                'DB_HOST' => $this->ask('Please enter the database address（Default: localhost）', 'localhost'),
+                'DB_DATABASE' => $this->ask('Please enter the database name'),
+                'DB_USERNAME' => $this->ask('Please enter the database username'),
+                'DB_PASSWORD' => $this->ask('Please enter the database password')
             ]);
             \Artisan::call('config:clear');
             \Artisan::call('config:cache');
             try {
                 DB::connection()->getPdo();
             } catch (\Exception $e) {
-                abort(500, '数据库连接失败');
+                abort(500, __('Failed to connect to the database'));
             }
             $file = \File::get(base_path() . '/database/install.sql');
             if (!$file) {
-                abort(500, '数据库文件不存在');
+                abort(500, __('Database file does not exist'));
             }
             $sql = str_replace("\n", "", $file);
             $sql = preg_split("/;/", $sql);
             if (!is_array($sql)) {
-                abort(500, '数据库文件格式有误');
+                abort(500, __('Database file format error'));
             }
-            $this->info('正在导入数据库请稍等...');
+            $this->info('Please wait for the database to be imported ...');
             foreach ($sql as $item) {
                 try {
                     DB::select(DB::raw($item));
                 } catch (\Exception $e) {
                 }
             }
-            $this->info('数据库导入完成');
+            $this->info('Database import completed');
             $email = '';
             while (!$email) {
-                $email = $this->ask('请输入管理员邮箱?');
+                $email = $this->ask('Please enter the email of the administrator');
             }
             $password = Helper::guid(false);
             if (!$this->registerAdmin($email, $password)) {
-                abort(500, '管理员账号注册失败，请重试');
+                abort(500, __('Failed to register administrator account, please try again later'));
             }
 
-            $this->info('一切就绪');
-            $this->info("管理员邮箱：{$email}");
-            $this->info("管理员密码：{$password}");
+            $this->info('All done!');
+            $this->info("Email：{$email}");
+            $this->info("Pass：{$password}");
 
             $defaultSecurePath = hash('crc32b', config('app.key'));
-            $this->info("访问 http(s)://你的站点/{$defaultSecurePath} 进入管理面板，你可以在用户中心修改你的密码。");
+            $this->info("Visit http(s)://yoursite/{$defaultSecurePath} to enter the admin panel. You can change your password in the user center.");
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
@@ -116,7 +116,7 @@ class AikoPanelInstall extends Command
         $user = new User();
         $user->email = $email;
         if (strlen($password) < 8) {
-            abort(500, '管理员密码长度最小为8位字符');
+            abort(500, __('Password must be greater than 8 digits'));
         }
         $user->password = password_hash($password, PASSWORD_DEFAULT);
         $user->uuid = Helper::guid(true);

@@ -96,5 +96,11 @@
     "Sending frequently, please try again later": "Sending frequently, please try again later",
     "Current product is sold out": "Current product is sold out",
     "There are too many password errors, please try again after :minute minutes.": "There are too many password errors, please try again after :minute minutes.",
-    "Reset failed, Please try again later": "Reset failed, Please try again later"
+    "Reset failed, Please try again later": "Reset failed, Please try again later",
+    "If you need to reinstall, please delete the .env file in the directory": "If you need to reinstall, please delete the .env file in the directory",
+    "Failed to copy .env.example file": "Failed to copy .env.example file",
+    "Failed to connect to the database": "Failed to connect to the database",
+    "Database file does not exist": "Database file does not exist",
+    "Database file format error": "Database file format error",
+    "Failed to register administrator account, please try again later": "Failed to register administrator account, please try again later"
 }

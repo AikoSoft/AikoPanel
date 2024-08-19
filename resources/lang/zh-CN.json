@@ -96,5 +96,11 @@
     "Sending frequently, please try again later": "发送频繁，请稍后再试",
     "Current product is sold out": "当前商品已售罄",
     "There are too many password errors, please try again after :minute minutes.": "密码错误次数过多，请 :minute 分钟后再试",
-    "Reset failed, Please try again later": "重置失败，请稍后再试"
+    "Reset failed, Please try again later": "重置失败，请稍后再试",
+    "If you need to reinstall, please delete the .env file in the directory": "如果需要重新安装，请删除目录中的 .env 文件",
+    "Failed to copy .env.example file": "复制 .env.example 文件失败",
+    "Failed to connect to the database": "数据库连接失败",
+    "Database file does not exist": "数据库文件不存在",
+    "Database file format error": "数据库文件格式有误",
+    "Failed to register administrator account, please try again later": "管理员账号注册失败，请重试"
 }
