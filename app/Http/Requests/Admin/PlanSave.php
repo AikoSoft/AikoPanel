@@ -36,24 +36,25 @@ class PlanSave extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => '套餐名称不能为空',
-            'type.required' => '套餐类型不能为空',
-            'type.in' => '套餐类型格式有误',
-            'group_id.required' => '权限组不能为空',
-            'transfer_enable.required' => '流量不能为空',
-            'device_limit.integer' => '设备数限制格式有误',
-            'month_price.integer' => '月付金额格式有误',
-            'quarter_price.integer' => '季付金额格式有误',
-            'half_year_price.integer' => '半年付金额格式有误',
-            'year_price.integer' => '年付金额格式有误',
-            'two_year_price.integer' => '两年付金额格式有误',
-            'three_year_price.integer' => '三年付金额格式有误',
-            'onetime_price.integer' => '一次性金额有误',
-            'reset_price.integer' => '流量重置包金额有误',
-            'reset_traffic_method.integer' => '流量重置方式格式有误',
-            'reset_traffic_method.in' => '流量重置方式格式有误',
-            'capacity_limit.integer' => '容纳用户量限制格式有误',
-            'speed_limit.integer' => '限速格式有误'
+            'name.required' => 'The package name cannot be empty',
+            'type.required' => 'The package type cannot be empty',
+            'type.in' => 'The package type format is incorrect',
+            'group_id.required' => 'The permission group cannot be empty',
+            'transfer_enable.required' => 'The data transfer limit cannot be empty',
+            'device_limit.integer' => 'The device limit format is incorrect',
+            'month_price.integer' => 'The monthly payment amount format is incorrect',
+            'quarter_price.integer' => 'The quarterly payment amount format is incorrect',
+            'half_year_price.integer' => 'The semi-annual payment amount format is incorrect',
+            'year_price.integer' => 'The annual payment amount format is incorrect',
+            'two_year_price.integer' => 'The biennial payment amount format is incorrect',
+            'three_year_price.integer' => 'The triennial payment amount format is incorrect',
+            'onetime_price.integer' => 'The one-time payment amount format is incorrect',
+            'reset_price.integer' => 'The traffic reset package amount format is incorrect',
+            'reset_traffic_method.integer' => 'The traffic reset method format is incorrect',
+            'reset_traffic_method.in' => 'The traffic reset method format is incorrect',
+            'capacity_limit.integer' => 'The user capacity limit format is incorrect',
+            'speed_limit.integer' => 'The speed limit format is incorrect'
+
         ];
     }
 }

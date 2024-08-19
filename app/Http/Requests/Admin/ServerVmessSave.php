@@ -36,24 +36,24 @@ class ServerVmessSave extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => '节点名称不能为空',
-            'group_id.required' => '权限组不能为空',
-            'group_id.array' => '权限组格式不正确',
-            'route_id.array' => '路由组格式不正确',
-            'parent_id.integer' => '父ID格式不正确',
-            'host.required' => '节点地址不能为空',
-            'port.required' => '连接端口不能为空',
-            'server_port.required' => '后端服务端口不能为空',
-            'tls.required' => 'TLS不能为空',
-            'tags.array' => '标签格式不正确',
-            'rate.required' => '倍率不能为空',
-            'rate.numeric' => '倍率格式不正确',
-            'network.required' => '传输协议不能为空',
-            'network.in' => '传输协议格式不正确',
-            'networkSettings.array' => '传输协议配置有误',
-            'ruleSettings.array' => '规则配置有误',
-            'tlsSettings.array' => 'tls配置有误',
-            'dnsSettings.array' => 'dns配置有误'
+            'name.required' => 'The node name cannot be empty',
+            'group_id.required' => 'The permission group cannot be empty',
+            'group_id.array' => 'The permission group format is incorrect',
+            'route_id.array' => 'The route group format is incorrect',
+            'parent_id.integer' => 'The parent ID format is incorrect',
+            'host.required' => 'The node address cannot be empty',
+            'port.required' => 'The connection port cannot be empty',
+            'server_port.required' => 'The backend service port cannot be empty',
+            'tls.required' => 'TLS cannot be empty',
+            'tags.array' => 'The tags format is incorrect',
+            'rate.required' => 'The rate cannot be empty',
+            'rate.numeric' => 'The rate format is incorrect',
+            'network.required' => 'The transport protocol cannot be empty',
+            'network.in' => 'The transport protocol format is incorrect',
+            'networkSettings.array' => 'The transport protocol configuration is incorrect',
+            'ruleSettings.array' => 'The rule configuration is incorrect',
+            'tlsSettings.array' => 'The TLS configuration is incorrect',
+            'dnsSettings.array' => 'The DNS configuration is incorrect'
         ];
     }
 }

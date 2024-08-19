@@ -24,10 +24,11 @@ class KnowledgeSave extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => '标题不能为空',
-            'category.required' => '分类不能为空',
-            'body.required' => '内容不能为空',
-            'language.required' => '语言不能为空'
+            'title.required' => 'The title cannot be empty',
+            'category.required' => 'The category cannot be empty',
+            'body.required' => 'The content cannot be empty',
+            'language.required' => 'The language cannot be empty'
+
         ];
     }
 }

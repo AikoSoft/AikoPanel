@@ -107,15 +107,16 @@ class ConfigSave extends FormRequest
     {
         // illiteracy prompt
         return [
-            'app_url.url' => '站点URL格式不正确，必须携带http(s)://',
-            'subscribe_url.url' => '订阅URL格式不正确，必须携带http(s)://',
-            'subscribe_path.regex' => '订阅路径必须以/开头',
-            'server_token.min' => '通讯密钥长度必须大于16位',
-            'tos_url.url' => '服务条款URL格式不正确，必须携带http(s)://',
-            'telegram_discuss_link.url' => 'Telegram群组地址必须为URL格式，必须携带http(s)://',
-            'logo.url' => 'LOGO URL格式不正确，必须携带https(s)://',
-            'secure_path.min' => '后台路径长度最小为8位',
-            'secure_path.regex' => '后台路径只能为字母或数字'
+'app_url.url' => 'The site URL format is incorrect; it must include http(s)://',
+'subscribe_url.url' => 'The subscription URL format is incorrect; it must include http(s)://',
+'subscribe_path.regex' => 'The subscription path must start with /',
+'server_token.min' => 'The communication key length must be greater than 16 characters',
+'tos_url.url' => 'The Terms of Service URL format is incorrect; it must include http(s)://',
+'telegram_discuss_link.url' => 'The Telegram group address must be in URL format and must include http(s)://',
+'logo.url' => 'The LOGO URL format is incorrect; it must include https(s)://',
+'secure_path.min' => 'The minimum length for the admin path is 8 characters',
+'secure_path.regex' => 'The admin path can only contain letters or numbers'
+
         ];
     }
 }

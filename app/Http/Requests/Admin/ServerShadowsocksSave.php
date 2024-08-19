@@ -33,20 +33,20 @@ class ServerShadowsocksSave extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => '节点名称不能为空',
-            'group_id.required' => '权限组不能为空',
-            'group_id.array' => '权限组格式不正确',
-            'route_id.array' => '路由组格式不正确',
-            'parent_id.integer' => '父节点格式不正确',
-            'host.required' => '节点地址不能为空',
-            'port.required' => '连接端口不能为空',
-            'server_port.required' => '后端服务端口不能为空',
-            'cipher.required' => '加密方式不能为空',
-            'tags.array' => '标签格式不正确',
-            'rate.required' => '倍率不能为空',
-            'rate.numeric' => '倍率格式不正确',
-            'obfs.in' => '混淆格式不正确',
-            'obfs_settings.array' => '混淆设置格式不正确'
+            'name.required' => 'The node name cannot be empty',
+            'group_id.required' => 'The permission group cannot be empty',
+            'group_id.array' => 'The permission group format is incorrect',
+            'route_id.array' => 'The route group format is incorrect',
+            'parent_id.integer' => 'The parent node format is incorrect',
+            'host.required' => 'The node address cannot be empty',
+            'port.required' => 'The connection port cannot be empty',
+            'server_port.required' => 'The backend service port cannot be empty',
+            'cipher.required' => 'The encryption method cannot be empty',
+            'tags.array' => 'The tags format is incorrect',
+            'rate.required' => 'The rate cannot be empty',
+            'rate.numeric' => 'The rate format is incorrect',
+            'obfs.in' => 'The obfuscation format is incorrect',
+            'obfs_settings.array' => 'The obfuscation settings format is incorrect'
         ];
     }
 }
