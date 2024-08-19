@@ -57,11 +57,11 @@ class AuthController extends Controller
         SendEmailJob::dispatch([
             'email' => $user->email,
             'subject' => __('Login to :name', [
-                'name' => config('aikopanel.app_name', 'aikopanel')
+                'name' => config('aikopanel.app_name', 'AikoPanel')
             ]),
             'template_name' => 'login',
             'template_value' => [
-                'name' => config('aikopanel.app_name', 'aikopanel'),
+                'name' => config('aikopanel.app_name', 'AikoPanel'),
                 'link' => $link,
                 'url' => config('aikopanel.app_url')
             ]
