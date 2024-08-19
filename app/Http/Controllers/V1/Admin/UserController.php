@@ -25,7 +25,7 @@ class UserController extends Controller
     public function resetSecret(Request $request)
     {
         $user = User::find($request->input('id'));
-        if (!$user) abort(500, '用户不存在');
+        if (!$user) abort(500, __('User does not exist'));
         $user->token = Helper::guid();
         $user->uuid = Helper::guid(true);
         return response([
@@ -83,7 +83,6 @@ class UserController extends Controller
                     $res[$i]['plan_name'] = $plan[$k]['name'];
                 }
             }
-            //统计在线设备
             $countalive = 0;
             $ips = [];
             $ips_array = Cache::get('ALIVE_IP_USER_'. $res[$i]['id']);
@@ -111,7 +110,7 @@ class UserController extends Controller
     public function getUserInfoById(Request $request)
     {
         if (empty($request->input('id'))) {
-            abort(500, '参数错误');
+            abort(500, __('Parameter error'));
         }
         $user = User::find($request->input('id'));
         if ($user->invite_user_id) {
@@ -127,10 +126,10 @@ class UserController extends Controller
         $params = $request->validated();
         $user = User::find($request->input('id'));
         if (!$user) {
-            abort(500, '用户不存在');
+            abort(500, __('User does not exist'));
         }
         if (User::where('email', $params['email'])->first() && $user->email !== $params['email']) {
-            abort(500, '邮箱已被使用');
+            abort(500, __('The email already exists'));
         }
         if (isset($params['password'])) {
             $params['password'] = password_hash($params['password'], PASSWORD_DEFAULT);
@@ -141,7 +140,7 @@ class UserController extends Controller
         if (isset($params['plan_id'])) {
             $plan = Plan::find($params['plan_id']);
             if (!$plan) {
-                abort(500, '订阅计划不存在');
+                abort(500, __('Subscription does not exist'));
             }
             $params['group_id'] = $plan->group_id;
         }
@@ -162,7 +161,7 @@ class UserController extends Controller
         try {
             $user->update($params);
         } catch (\Exception $e) {
-            abort(500, '保存失败');
+            abort(500, __('Update failed'));
         }
         return response([
             'data' => true
@@ -183,19 +182,18 @@ class UserController extends Controller
             }
         }
 
-        $data = "邮箱,余额,推广佣金,总流量,设备数限制,剩余流量,套餐到期时间,订阅计划,订阅地址\r\n";
+        $data = "Email,Balance,Promotion Commission,Total Data,Device Limit,Remaining Data,Subscription Expiration Date,Subscription Plan,Subscription URL\r\n";
         foreach($res as $user) {
-            $expireDate = $user['expired_at'] === NULL ? '长期有效' : date('Y-m-d H:i:s', $user['expired_at']);
+            $expireDate = $user['expired_at'] === NULL ? 'Valid Indefinitely' : date('Y-m-d H:i:s', $user['expired_at']);
             $balance = $user['balance'] / 100;
             $commissionBalance = $user['commission_balance'] / 100;
             $transferEnable = $user['transfer_enable'] ? $user['transfer_enable'] / 1073741824 : 0;
             $deviceLimit = $user['devce_limit'] ? $user['devce_limit'] : NULL;
             $notUseFlow = (($user['transfer_enable'] - ($user['u'] + $user['d'])) / 1073741824) ?? 0;
-            $planName = $user['plan_name'] ?? '无订阅';
-            $subscribeUrl =  Helper::getSubscribeUrl($user['token']);
+            $planName = $user['plan_name'] ?? 'No Subscription';
+            $subscribeUrl = Helper::getSubscribeUrl($user['token']);
             $data .= "{$user['email']},{$balance},{$commissionBalance},{$transferEnable}, {$deviceLimit}, {$notUseFlow},{$expireDate},{$planName},{$subscribeUrl}\r\n";
-
-        }
+        }        
         echo "\xEF\xBB\xBF" . $data;
     }
 
@@ -205,7 +203,7 @@ class UserController extends Controller
             if ($request->input('plan_id')) {
                 $plan = Plan::find($request->input('plan_id'));
                 if (!$plan) {
-                    abort(500, '订阅计划不存在');
+                    abort(500, __('Subscription does not exist'));
                 }
             }
             $user = [
@@ -219,11 +217,11 @@ class UserController extends Controller
                 'token' => Helper::guid()
             ];
             if (User::where('email', $user['email'])->first()) {
-                abort(500, '邮箱已存在于系统中');
+                abort(500, __('The email already exists'));
             }
             $user['password'] = password_hash($request->input('password') ?? $user['email'], PASSWORD_DEFAULT);
             if (!User::create($user)) {
-                abort(500, '生成失败');
+                abort(500, __('Creation failed'));
             }
             return response([
                 'data' => true
@@ -239,7 +237,7 @@ class UserController extends Controller
         if ($request->input('plan_id')) {
             $plan = Plan::find($request->input('plan_id'));
             if (!$plan) {
-                abort(500, '订阅计划不存在');
+                abort(500, __('Subscription does not exist'));
             }
         }
         $users = [];
@@ -262,17 +260,17 @@ class UserController extends Controller
         DB::beginTransaction();
         if (!User::insert($users)) {
             DB::rollBack();
-            abort(500, '生成失败');
+            abort(500, __('Creation failed'));
         }
         DB::commit();
-        $data = "账号,密码,过期时间,UUID,创建时间,订阅地址\r\n";
+        $data = "Account,Password,Expiration Date,UUID,Creation Date,Subscription URL\r\n";
         foreach($users as $user) {
-            $expireDate = $user['expired_at'] === NULL ? '长期有效' : date('Y-m-d H:i:s', $user['expired_at']);
+            $expireDate = $user['expired_at'] === NULL ? 'Valid Indefinitely' : date('Y-m-d H:i:s', $user['expired_at']);
             $createDate = date('Y-m-d H:i:s', $user['created_at']);
             $password = $request->input('password') ?? $user['email'];
             $subscribeUrl = Helper::getSubscribeUrl($user['token']);
             $data .= "{$user['email']},{$password},{$expireDate},{$user['uuid']},{$createDate},{$subscribeUrl}\r\n";
-        }
+        }        
         echo $data;
     }
 
@@ -313,7 +311,7 @@ class UserController extends Controller
                 'banned' => 1
             ]);
         } catch (\Exception $e) {
-            abort(500, '处理失败');
+            abort(500, __('Ban failed'));
         }
 
         return response([
@@ -344,7 +342,7 @@ class UserController extends Controller
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-            abort(500, '批量删除用户信息失败');
+            abort(500, __('Delete failed'));
         }  
 
         return response([
@@ -356,7 +354,7 @@ class UserController extends Controller
     {
         $user = User::find($request->input('id'));
         if (!$user) {
-            abort(500, '用户不存在');
+            abort(500, __('User does not exist'));
         }
     
         DB::beginTransaction();
@@ -375,7 +373,7 @@ class UserController extends Controller
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-            abort(500, '删除用户失败');
+            abort(500, __('Delete failed'));
         }
 
         return response([
