@@ -103,5 +103,8 @@
     "Database file does not exist": "Database file does not exist",
     "Database file format error": "Database file format error",
     "Failed to register administrator account, please try again later": "Failed to register administrator account, please try again later",
-    "Database update file not found": "Database update file not found"
+    "Database update file not found": "Database update file not found",
+    "Email does not exist": "Email does not exist",
+    "Failed to reset password": "Failed to reset password",
+    "User traffic reset failed": "User traffic reset failed"
 }

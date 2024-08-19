@@ -23,7 +23,7 @@ class ResetPassword extends Command
      *
      * @var string
      */
-    protected $description = '重置用户密码';
+    protected $description = 'Reset password task';
 
     /**
      * Create a new command instance.
@@ -43,12 +43,12 @@ class ResetPassword extends Command
     public function handle()
     {
         $user = User::where('email', $this->argument('email'))->first();
-        if (!$user) abort(500, '邮箱不存在');
+        if (!$user) abort(500, __('Email does not exist'));
         $password = Helper::guid(false);
         $user->password = password_hash($password, PASSWORD_DEFAULT);
         $user->password_algo = null;
-        if (!$user->save()) abort(500, '重置失败');
-        $this->info("!!!重置成功!!!");
-        $this->info("新密码为：{$password}，请尽快修改密码。");
+        if (!$user->save()) abort(500, __('Failed to reset password'));
+        $this->info("!!!Reset successful!!!");
+        $this->info("The new password is: {$password}, please change the password as soon as possible.");
     }
 }

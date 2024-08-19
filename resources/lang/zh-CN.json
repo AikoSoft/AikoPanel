@@ -103,5 +103,8 @@
     "Database file does not exist": "数据库文件不存在",
     "Database file format error": "数据库文件格式有误",
     "Failed to register administrator account, please try again later": "管理员账号注册失败，请重试",
-    "Database update file not found": "数据库更新文件未找到"
+    "Database update file not found": "数据库更新文件未找到",
+    "Email does not exist": "邮箱不存在",
+    "Failed to reset password": "重置密码失败",
+    "User traffic reset failed": "用户流量重置失败"
 }

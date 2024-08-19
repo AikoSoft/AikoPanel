@@ -103,5 +103,8 @@
     "Database file does not exist": "Tệp cơ sở dữ liệu không tồn tại",
     "Database file format error": "Lỗi định dạng tệp cơ sở dữ liệu",
     "Failed to register administrator account, please try again later": "Đăng ký tài khoản quản trị viên thất bại, vui lòng thử lại sau",
-    "Database update file not found": "Không tìm thấy tệp cập nhật cơ sở dữ liệu"
+    "Database update file not found": "Không tìm thấy tệp cập nhật cơ sở dữ liệu",
+    "Email does not exist": "Email không tồn tại",
+    "Failed to reset password": "Đặt lại mật khẩu thất bại",
+    "User traffic reset failed": "Đặt lại lưu lượng người dùng thất bại"
 }
