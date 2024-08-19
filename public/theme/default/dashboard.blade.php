@@ -33,7 +33,7 @@
             background_url: '{{$theme_config['background_url']}}',
             description: '{{$description}}',
             i18n: [
-                'zh-CN',
+                'en-US',
                 'en-US',
                 'ja-JP',
                 'vi-VN',
@@ -44,7 +44,7 @@
             logo: '{{$logo}}'
         }
     </script>
-    <script src="/theme/{{$theme}}/assets/i18n/zh-CN.js?v={{$version}}"></script>
+    <script src="/theme/{{$theme}}/assets/i18n/en-US.js?v={{$version}}"></script>
     <script src="/theme/{{$theme}}/assets/i18n/zh-TW.js?v={{$version}}"></script>
     <script src="/theme/{{$theme}}/assets/i18n/en-US.js?v={{$version}}"></script>
     <script src="/theme/{{$theme}}/assets/i18n/ja-JP.js?v={{$version}}"></script>

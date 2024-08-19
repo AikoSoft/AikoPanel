@@ -106,5 +106,6 @@
     "Database update file not found": "Database update file not found",
     "Email does not exist": "Email does not exist",
     "Failed to reset password": "Failed to reset password",
-    "User traffic reset failed": "User traffic reset failed"
+    "User traffic reset failed": "User traffic reset failed",
+    "Theme rendering failed. If the theme is updated, the parameters may change. Please reconfigure the theme and try again.": "Theme rendering failed. If the theme is updated, the parameters may change. Please reconfigure the theme and try again."
 }

@@ -212,7 +212,7 @@ class TicketController extends Controller
 					$ip_address = $_SERVER['REMOTE_ADDR'];
 				}
 				
-				$api_url = "http://ip-api.com/json/{$ip_address}?fields=520191&lang=zh-CN";
+				$api_url = "http://ip-api.com/json/{$ip_address}?fields=520191&lang=en-US";
 				$response = file_get_contents($api_url);
 				$user_location = json_decode($response, true);
 				if ($user_location && $user_location['status'] === 'success') {
