@@ -22,13 +22,14 @@ class Surge
         $user = $this->user;
 
         $appName = config('aikopanel.app_name', 'aikopanel');
-        header("content-disposition:attachment;filename*=UTF-8''".rawurlencode($appName).".conf");
+        header("content-disposition:attachment;filename*=UTF-8''" . rawurlencode($appName) . ".conf");
 
         $proxies = '';
         $proxyGroup = '';
 
         foreach ($servers as $item) {
-            if ($item['type'] === 'shadowsocks'
+            if (
+                $item['type'] === 'shadowsocks'
                 && in_array($item['cipher'], [
                     'aes-128-gcm',
                     'aes-192-gcm',
@@ -40,17 +41,17 @@ class Surge
                 $proxies .= self::buildShadowsocks($user['uuid'], $item);
                 // [Proxy Group]
                 $proxyGroup .= $item['name'] . ', ';
-            }elseif ($item['type'] === 'vmess') {
+            } elseif ($item['type'] === 'vmess') {
                 // [Proxy]
                 $proxies .= self::buildVmess($user['uuid'], $item);
                 // [Proxy Group]
                 $proxyGroup .= $item['name'] . ', ';
-            }elseif ($item['type'] === 'trojan') {
+            } elseif ($item['type'] === 'trojan') {
                 // [Proxy]
                 $proxies .= self::buildTrojan($user['uuid'], $item);
                 // [Proxy Group]
                 $proxyGroup .= $item['name'] . ', ';
-            }elseif ($item['type'] === 'hysteria' && $item['version'] === 2) { //surge只支持hysteria2
+            } elseif ($item['type'] === 'hysteria' && $item['version'] === 2) { //surge只支持hysteria2
                 // [Proxy]
                 $proxies .= self::buildHysteria($user['uuid'], $item);
                 // [Proxy Group]
@@ -75,13 +76,13 @@ class Surge
         $config = str_replace('$proxies', $proxies, $config);
         $config = str_replace('$proxy_group', rtrim($proxyGroup, ', '), $config);
 
-        $upload = round($user['u'] / (1024*1024*1024), 2);
-        $download = round($user['d'] / (1024*1024*1024), 2);
-        $useTraffic = $upload + $download;
-        $totalTraffic = round($user['transfer_enable'] / (1024*1024*1024), 2);
-        $expireDate = $user['expired_at'] === NULL ? '长期有效' : date('Y-m-d H:i:s', $user['expired_at']);
-        $subscribeInfo = "title={$appName}订阅信息, content=上传流量：{$upload}GB\\n下载流量：{$download}GB\\n剩余流量：{$useTraffic}GB\\n套餐流量：{$totalTraffic}GB\\n到期时间：{$expireDate}";
-        $config = str_replace('$subscribe_info', $subscribeInfo, $config);
+        $upload = round($user['u'] / (1024 * 1024 * 1024), 2); // Converts the upload traffic from bytes to gigabytes and rounds it to 2 decimal places
+        $download = round($user['d'] / (1024 * 1024 * 1024), 2); // Converts the download traffic from bytes to gigabytes and rounds it to 2 decimal places
+        $useTraffic = $upload + $download; // Sums the upload and download traffic to get the total used traffic
+        $totalTraffic = round($user['transfer_enable'] / (1024 * 1024 * 1024), 2); // Converts the total available traffic from bytes to gigabytes and rounds it to 2 decimal places
+        $expireDate = $user['expired_at'] === NULL ? 'Valid indefinitely' : date('Y-m-d H:i:s', $user['expired_at']); // Checks if the expiration date is NULL, indicating indefinite validity, otherwise formats the expiration date
+        $subscribeInfo = "title={$appName} Subscription Information, content=Upload Traffic: {$upload}GB\\nDownload Traffic: {$download}GB\\nRemaining Traffic: {$useTraffic}GB\\nTotal Traffic: {$totalTraffic}GB\\nExpiration Date: {$expireDate}"; // Constructs the subscription information string with the calculated values
+        $config = str_replace('$subscribe_info', $subscribeInfo, $config); // Replaces the placeholder $subscribe_info in the $config string with the actual subscription information
 
         return $config;
     }
@@ -175,7 +176,7 @@ class Surge
     //参考文档: https://manual.nssurge.com/policy/proxy.html
     public static function buildHysteria($password, $server)
     {
-        $parts = explode(",",$server['port']);
+        $parts = explode(",", $server['port']);
         $firstPart = $parts[0];
         if (strpos($firstPart, '-') !== false) {
             $range = explode('-', $firstPart);
@@ -191,7 +192,7 @@ class Surge
             "password={$password}",
             "download-bandwidth={$server['up_mbps']}",
             $server['server_name'] ? "sni={$server['server_name']}" : "",
-            // 'tfo=true', 
+            // 'tfo=true',
             'udp-relay=true'
         ];
         if (!empty($server['insecure'])) {
