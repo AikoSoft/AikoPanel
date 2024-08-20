@@ -67,7 +67,7 @@ class TrafficFetchJob implements ShouldQueue
                         continue;
                     }
                 }
-                abort(500, __(''User traffic update failed''). $e->getMessage());
+                abort(500, __('User traffic update failed'). $e->getMessage());
             }
         }
     }

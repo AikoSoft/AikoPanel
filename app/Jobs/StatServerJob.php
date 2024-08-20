@@ -81,7 +81,7 @@ class StatServerJob implements ShouldQueue
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            abort(500, __(Node statistics failed). $e->getMessage());
+            abort(500, __('Node statistics failed'). $e->getMessage());
         }
     }
 }
