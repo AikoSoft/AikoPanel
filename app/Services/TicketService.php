@@ -36,7 +36,7 @@ class TicketService {
         $ticket = Ticket::where('id', $ticketId)
             ->first();
         if (!$ticket) {
-            abort(500, '工单不存在');
+            abort(500, __('Work order does not exist'));
         }
         $ticket->status = 0;
         DB::beginTransaction();
@@ -52,7 +52,7 @@ class TicketService {
         }
         if (!$ticketMessage || !$ticket->save()) {
             DB::rollback();
-            abort(500, '工单回复失败');
+            abort(500, __('Work order reply failed'));
         }
         DB::commit();
         $this->sendEmailNotify($ticket, $ticketMessage);
@@ -67,14 +67,14 @@ class TicketService {
             Cache::put($cacheKey, 1, 1800);
             SendEmailJob::dispatch([
                 'email' => $user->email,
-                'subject' => '您在' . config('aikopanel.app_name', 'aikopanel') . '的工单得到了回复',
+                'subject' => 'You have received a reply to your ticket on ' . config('aikopanel.app_name', 'aikopanel'),
                 'template_name' => 'notify',
                 'template_value' => [
                     'name' => config('aikopanel.app_name', 'aikopanel'),
                     'url' => config('aikopanel.app_url'),
-                    'content' => "主题：{$ticket->subject}\r\n回复内容：{$ticketMessage->message}"
+                    'content' => "Subject: {$ticket->subject}\r\nReply content: {$ticketMessage->message}"
                 ]
             ]);
         }
-    }
+        
 }

@@ -45,7 +45,7 @@ class OrderService
                 ]);
             } catch (\Exception $e) {
                 DB::rollback();
-                abort(500, '开通失败');
+                abort(500, __('Activation failed'));
             }
         }
         switch ((string)$order->period) {
@@ -75,12 +75,12 @@ class OrderService
 
         if (!$this->user->save()) {
             DB::rollBack();
-            abort(500, '开通失败');
+            abort(500, __('Activation failed'));
         }
         $order->status = 3;
         if (!$order->save()) {
             DB::rollBack();
-            abort(500, '开通失败');
+            abort(500, __('Activation failed'));
         }
 
         DB::commit();
@@ -93,7 +93,7 @@ class OrderService
         if ($order->period === 'reset_price') {
             $order->type = 4;
         } else if ($user->plan_id !== NULL && $order->plan_id !== $user->plan_id && ($user->expired_at > time() || $user->expired_at === NULL)) {
-            if (!(int)config('aikopanel.plan_change_enable', 1)) abort(500, '目前不允许更改订阅，请联系客服或提交工单操作');
+            if (!(int)config('aikopanel.plan_change_enable', 1)) abort(500, __('Subscription changes are currently not allowed, please contact customer service or submit a work order.'));
             $order->type = 3;
             if ((int)config('aikopanel.surplus_enable', 1)) $this->getSurplusValue($user, $order);
             if ($order->surplus_amount >= $order->total_amount) {

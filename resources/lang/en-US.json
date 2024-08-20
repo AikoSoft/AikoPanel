@@ -139,5 +139,19 @@
     "token is error": "token is error",
     "User statistics failed": "User statistics failed",
     "User traffic update failed": "User traffic update failed",
-    "Node statistics failed": "Node statistics failed"
+    "Node statistics failed": "Node statistics failed",
+    "The parameters are incorrect, please send with the subscription address": "The parameters are incorrect, please send with the subscription address",
+    "Subscription address is invalid": "Subscription address is invalid",
+    "This account has been bound to a Telegram account": "This account has been bound to a Telegram account",
+    "Setup failed": "Setup failed",
+    "Unbinding failed": "Unbinding failed",
+    "Activation failed": "Activation failed",
+    "Subscription changes are currently not allowed, please contact customer service or submit a work order.": "Subscription changes are currently not allowed, please contact customer service or submit a work order.",
+    "Request failed": "Request failed",
+    "Error from TG": "Error from TG",
+    "Topic does not exist": "Topic does not exist",
+    "Wrong theme configuration file": "Wrong theme configuration file",
+    "Initialization failed": "Initialization failed",
+    "Please check aikopanel directory permissions": "Please check aikopanel directory permissions",
+    ""
 }
