@@ -153,5 +153,6 @@
     "Wrong theme configuration file": "Wrong theme configuration file",
     "Initialization failed": "Initialization failed",
     "Please check aikopanel directory permissions": "Please check aikopanel directory permissions",
-    ""
+    "Work order does not exist": "Work order does not exist",
+    "Work order reply failed": "Work order reply failed"
 }
