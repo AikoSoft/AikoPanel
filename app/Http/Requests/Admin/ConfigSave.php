@@ -107,15 +107,15 @@ class ConfigSave extends FormRequest
     {
         // illiteracy prompt
         return [
-'app_url.url' => 'The site URL format is incorrect; it must include http(s)://',
-'subscribe_url.url' => 'The subscription URL format is incorrect; it must include http(s)://',
-'subscribe_path.regex' => 'The subscription path must start with /',
-'server_token.min' => 'The communication key length must be greater than 16 characters',
-'tos_url.url' => 'The Terms of Service URL format is incorrect; it must include http(s)://',
-'telegram_discuss_link.url' => 'The Telegram group address must be in URL format and must include http(s)://',
-'logo.url' => 'The LOGO URL format is incorrect; it must include https(s)://',
-'secure_path.min' => 'The minimum length for the admin path is 8 characters',
-'secure_path.regex' => 'The admin path can only contain letters or numbers'
+            'app_url.url' => 'The site URL format is incorrect; it must include http(s)://',
+            'subscribe_url.url' => 'The subscription URL format is incorrect; it must include http(s)://',
+            'subscribe_path.regex' => 'The subscription path must start with /',
+            'server_token.min' => 'The communication key length must be greater than 16 characters',
+            'tos_url.url' => 'The Terms of Service URL format is incorrect; it must include http(s)://',
+            'telegram_discuss_link.url' => 'The Telegram group address must be in URL format and must include http(s)://',
+            'logo.url' => 'The LOGO URL format is incorrect; it must include https(s)://',
+            'secure_path.min' => 'The minimum length for the admin path is 8 characters',
+            'secure_path.regex' => 'The admin path can only contain letters or numbers'
 
         ];
     }
