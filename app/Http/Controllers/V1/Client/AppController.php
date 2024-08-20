@@ -31,7 +31,8 @@ class AppController extends Controller
         $proxies = [];
 
         foreach ($servers as $item) {
-            if ($item['type'] === 'shadowsocks'
+            if (
+                $item['type'] === 'shadowsocks'
                 && in_array($item['cipher'], [
                     'aes-128-gcm',
                     'aes-192-gcm',
@@ -63,7 +64,8 @@ class AppController extends Controller
 
     public function getVersion(Request $request)
     {
-        if (strpos($request->header('user-agent'), 'tidalab/4.0.0') !== false
+        if (
+            strpos($request->header('user-agent'), 'tidalab/4.0.0') !== false
             || strpos($request->header('user-agent'), 'tunnelab/4.0.0') !== false
         ) {
             if (strpos($request->header('user-agent'), 'Win64') !== false) {
