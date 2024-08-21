@@ -58,7 +58,6 @@ class TicketService {
         $this->sendEmailNotify($ticket, $ticketMessage);
     }
 
-    // 半小时内不再重复通知
     private function sendEmailNotify(Ticket $ticket, TicketMessage $ticketMessage)
     {
         $user = User::find($ticket->user_id);
@@ -75,6 +74,6 @@ class TicketService {
                     'content' => "Subject: {$ticket->subject}\r\nReply content: {$ticketMessage->message}"
                 ]
             ]);
-        }
-        
+        }   
+    }
 }
