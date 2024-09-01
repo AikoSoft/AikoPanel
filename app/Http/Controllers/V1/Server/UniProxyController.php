@@ -43,19 +43,6 @@ class UniProxyController extends Controller
         $users = $this->serverService->getAvailableUsers($this->nodeInfo->group_id);
         $users = $users->toArray();
 
-        $users = array_map(function ($user) {
-            if ($user['device_limit'] == null || $user['device_limit'] <= 0) {
-                return $user;
-            }
-            $ips_array = Cache::get('ALIVE_IP_USER_'. $user['id']);
-            $count = 0;
-            if ($ips_array) {
-                $count = $ips_array['alive_ip'];
-            }
-            $user['alive_ip'] = $count;
-            return $user;
-        }, $users);
-
         $response['users'] = $users;
 
         $eTag = sha1(json_encode($response));
@@ -66,7 +53,24 @@ class UniProxyController extends Controller
         return response($response)->header('ETag', "\"{$eTag}\"");
     }
 
-    // 后端提交数据
+    public function alivelist(Request $request)
+    {
+        $userService = new UserService();
+        $maxId = $userService->getMaxId();
+        $alive = [];
+
+        for ($id = 1; $id <= $maxId; $id++) {
+            if (Cache::has('ALIVE_IP_USER_' . $id)) {
+                $ips_array = Cache::get('ALIVE_IP_USER_' . $id);
+                if ($ips_array) {
+                    $alive[$id] = $ips_array['alive_ip'];
+                }
+            }
+        }
+
+        return response()->json(['alive' => (object)$alive]);
+    }
+
     public function push(Request $request)
     {
         $data = request()->getContent() ?: json_encode($_POST);
@@ -101,9 +105,7 @@ class UniProxyController extends Controller
         $updateAt = time();
         foreach ($data as $uid => $ips) {
             $ips_array = Cache::get('ALIVE_IP_USER_'. $uid) ?? [];
-            // 更新节点数据
             $ips_array[$this->nodeType . $this->nodeId] = ['aliveips' => $ips, 'lastupdateAt' => $updateAt];
-            // 清理过期数据
             foreach($ips_array as $nodetypeid => $oldips) { 
                 if (!is_int($oldips) && ($updateAt - $oldips['lastupdateAt'] > 100)) { 
                     unset($ips_array[$nodetypeid]); 
@@ -137,7 +139,6 @@ class UniProxyController extends Controller
         ]);
     }
 
-    // 后端获取配置
     public function config(Request $request)
     {
         switch ($this->nodeType) {
